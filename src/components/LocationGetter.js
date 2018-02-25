@@ -7,11 +7,13 @@ class LocationGetter extends Component {
       querySubmitted: false,
       query: ''
     }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
 handleChange(event) {
-  this.setState({ value: this.state.query });
+  this.setState({ query: event.target.value });
 }
 
 handleSubmit(event) {
