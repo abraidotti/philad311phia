@@ -6,6 +6,8 @@ import Contact from './Contact';
 import Home from './Home';
 import NavBar from './NavBar';
 
+import LocationGetter from './LocationGetter';
+
 class App extends Component {
   render() {
     return (
@@ -20,6 +22,7 @@ class App extends Component {
             </Switch>
           </Fragment>
         </Router>
+        <LocationGetter />
       </div>
     )
   }
