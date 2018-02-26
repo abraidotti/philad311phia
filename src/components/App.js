@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styles from '../App.css';
 
 import About from './About';
 import Contact from './Contact';
