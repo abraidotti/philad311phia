@@ -50,14 +50,13 @@ class LocationGetter extends Component {
   render() {
     if (this.state.isLoading)
       return <div className="loading">loading...</div>
-    return (<div>
-      <form onSubmit={this.handleSubmit}>
-        <label>
+    return (
+      <div className="container">
+        <form onSubmit={this.handleSubmit}>
           <span>Philly Zip code pls:</span>
           <input type="text" value={this.state.query} onChange={this.handleChange}/>
-        </label>
-        <input className={this.state.buttonState} type="submit" value="Submit"/>
-      </form>
+          <input className={this.state.buttonState} type="submit" value="Submit"/>
+        </form>
       <div>
         <ul>
           {
