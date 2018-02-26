@@ -4,7 +4,7 @@ class LocationGetter extends Component {
   constructor() {
     super();
     this.state = {
-      querySubmitted: false,
+      isLoading: false,
       query: '',
       data: []
     };
@@ -19,8 +19,7 @@ class LocationGetter extends Component {
 
   handleSubmit(event) {
     let zip = this.state.query;
-    this.setState ({ querySubmitted: true})
-    console.log('query submitted: ' + zip)
+    this.setState ({ isLoading: true})
     event.preventDefault();
 
      fetch(`https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20public_cases_fc%20WHERE%20zipcode%20=%20%27${zip}%27%20AND%20media_url%20NOT%20LIKE%20%27%27%20LIMIT%203`)
@@ -30,11 +29,12 @@ class LocationGetter extends Component {
       .then(data => {
         console.log(data.rows)
         this.setState ({ data: data.rows})
-        console.log(data.rows[0].service_request_id)
+        this.setState ({ isLoading: false})
       });
   };
 
   render() {
+    if (this.state.isLoading) return <div className="loading">loading...</div>
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
@@ -53,19 +53,17 @@ class LocationGetter extends Component {
                 <div className="column">
                   <img src={item.media_url} alt="media url"/>
                 </div>
-                <div className="column">
-                  <p>service_request_id: {item.service_request_id}</p>
-                  <p>object id: {item.objectid}</p>
-                  <p>address: {item.address}, {item.zipcode}</p>
+                <div className="column entry-info">
+                  <p>Service Request ID: {item.service_request_id}</p>
+                  <p>Address: {item.address}, {item.zipcode}</p>
                   <p>Service name: {item.service_name}
-                    (code: {item.service_code})</p>
-                  <p>agency responsible: {item.agency_responsible}</p>
-                  <p>requested_datetime: {item.requested_datetime}</p>
-                  <p>expected_datetime: {item.expected_datetime}</p>
-                  <p>time updated in database: {item.updated_datetime}</p>
-                  <p>service_notice: {item.service_notice}</p>
-                  <p>status: {item.status}</p>
-                  <p>status_notes: {item.status_notes}</p>
+                     (code: {item.service_code})</p>
+                  <p>Agency Responsible: {item.agency_responsible}</p>
+                  <p>Date Requested: {item.requested_datetime.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}</p>
+                  <p>Date Expected: {item.expected_datetime.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}</p>
+                  <p>Last Updated: {item.updated_datetime.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}</p>
+                  <p>Status: {item.status}</p>
+                  <p>Status Notes: {item.status_notes}</p>
                 </div>
               </div>
             </div>

@@ -2,6 +2,38 @@ body {
   font-family: 'Roboto', sans-serif
 }
 
+input[type=text] {
+    width: 10%;
+}
+
+.navbar {
+  display: block;
+  border-radius: 4px;
+  background-color: #f3c613;
+}
+
+.navbar p {
+  color: #0f4d90;
+  font-size: 3em;
+  font-weight: 800;
+}
+
+.navbar li {
+  display: inline-block;
+  margin: 0 auto;
+  width: 30vw;
+  font-size: 2em;
+}
+
 .app-entry {
-  border: 2px solid yellow;
+  background-color: #96c9ff;
+  border: 2px solid #2176d2;
+  border-radius: 4px;
+  margin: 1%;
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+.loading {
+  font-size: 4em;
 }
