@@ -6,6 +6,10 @@ input[type=text] {
     width: 10%;
 }
 
+input.invisible {
+  display: none;
+}
+
 .navbar {
   display: block;
   border-radius: 4px;
