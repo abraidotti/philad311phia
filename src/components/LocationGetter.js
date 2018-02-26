@@ -47,28 +47,29 @@ class LocationGetter extends Component {
       <div>
         <ul>
           {
-            this.state.data.map((item,index) =>
-            <li key={index} className="311-entry">
-              <p>{index} - {item.address}</p>
-              <img src={item.media_url} alt="media url"/>
-              <p>address: {item.address}, {item.zipcode}</p>
-              <p>agency_responsible: {item.agency_responsible}</p>
-              <p>cartodb_id: {item.cartodb_id}</p>
-              <p>expected_datetime: {item.expected_datetime}</p>
-              <p>lat: {item.lat}, lon: {item.lon}</p>
-              <p>objectid: {item.objectid}</p>
-              <p>requested_datetime: {item.requested_datetime}</p>
-              <p>service_code: {item.service_code}</p>
-              <p>service_name: {item.service_name}</p>
-              <p>service_notice: {item.service_notice}</p>
-              <p>service_request_id: {item.service_request_id}</p>
-              <p>status: {item.status}</p>
-              <p>status_notes: {item.status_notes}</p>
-              <p>the_geom: {item.the_geom}</p>
-              <p>the_geom_webmercator: {item.the_geom_webmercator}</p>
-              <p>time updated in database: {item.updated_datetime}</p>
-            </li>)
-          }
+            this.state.data.map((item, index) =>
+            <div key={index} className="container app-entry">
+              <div className="row">
+                <div className="column">
+                  <img src={item.media_url} alt="media url"/>
+                </div>
+                <div className="column">
+                  <p>service_request_id: {item.service_request_id}</p>
+                  <p>object id: {item.objectid}</p>
+                  <p>address: {item.address}, {item.zipcode}</p>
+                  <p>Service name: {item.service_name}
+                    (code: {item.service_code})</p>
+                  <p>agency responsible: {item.agency_responsible}</p>
+                  <p>requested_datetime: {item.requested_datetime}</p>
+                  <p>expected_datetime: {item.expected_datetime}</p>
+                  <p>time updated in database: {item.updated_datetime}</p>
+                  <p>service_notice: {item.service_notice}</p>
+                  <p>status: {item.status}</p>
+                  <p>status_notes: {item.status_notes}</p>
+                </div>
+              </div>
+            </div>
+          )}
         </ul>
       </div>
     </div>
