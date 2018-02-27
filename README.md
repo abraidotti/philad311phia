@@ -7,6 +7,7 @@ git clone https://github.com/abraidotti/philad311phia.git
 cd philad311phia
 npm install
 npm start
+http://localhost:3000
 ```
 
 ## Todo
