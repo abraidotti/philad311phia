@@ -3,7 +3,7 @@
 - Search through Philadelphia's 311 records and see entries with images attached.
 
 ```
-https://github.com/abraidotti/philad311phia.git
+git clone https://github.com/abraidotti/philad311phia.git
 cd philad311phia
 npm install
 npm start
