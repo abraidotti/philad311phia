@@ -79,27 +79,30 @@ class LocationGetter extends Component {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
-          <label>Philly Zip code pls:
-          <input
-            name="query"
-            type="text"
-            value={this.state.query}
-            onChange={this.handleInputChange}/>
-          </label>
-          <label>
-          Limit results to:
-          <select
-            name="results"
-            type="number"
-            value={this.state.results}
-            onChange={this.handleInputChange}>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-          </select>
-        </label>
-          {button}
+          <fieldset>
+            <legend>311 Search</legend>
+              <label>Philly Zip code pls:
+              <input
+                name="query"
+                type="text"
+                value={this.state.query}
+                onChange={this.handleInputChange}/>
+              </label>
+              <label>
+              Limit results to:
+              <select
+                name="results"
+                type="number"
+                value={this.state.results}
+                onChange={this.handleInputChange}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+              </select>
+            </label>
+              {button}
+            </fieldset>
         </form>
       <div>
         <ul>
