@@ -11,3 +11,5 @@ npm start
 ## Todo
 
 - switch CSS to Sass
+- add more functionality to queries
+- paginate results

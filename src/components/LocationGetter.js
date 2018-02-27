@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const allowedZips = [ '19019','19099', '19101', '19102', '19103', '19104',
+const allowedZips = [ '19019', '19099', '19101', '19102', '19103', '19104',
 '19105', '19106', '19107', '19109', '19110', '19111', '19112', '19114', '19115',
 '19116', '19118', '19119', '19120', '19121', '19122', '19123', '19124', '19125',
 '19126', '19127', '19128', '19129', '19130', '19131', '19132', '19133', '19134',
@@ -14,33 +14,47 @@ class LocationGetter extends Component {
     this.state = {
       isLoading: false,
       query: '',
-      buttonState: 'invisible',
+      results: '5',
+      buttonClass: '',
+      buttonDisabled: true,
       data: []
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
-  handleChange(event) {
-    this.setState({query: event.target.value});
-    if (allowedZips.indexOf(event.target.value) > -1) {
-      this.setState({buttonState: 'visible'});
-    } else {
-      this.setState({buttonState: 'invisible'});
+  handleInputChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    this.setState({ [name]: value });
+
+    if (name === 'query') {
+      if (allowedZips.indexOf(target.value) > -1) {
+        this.setState({ buttonClass: 'active' });
+        this.setState({ buttonDisabled: false });
+      } else {
+        this.setState({ buttonClass: 'inactive' });
+        this.setState({ buttonDisabled: true });
+      }
     }
-  };
+  }
 
   handleSubmit(event) {
-    let zip = this.state.query;
+    const zip = '%20AND%20zipcode%20=%20%27' + this.state.query + '%27';
+    const results = '%20LIMIT%20' + this.state.results
     this.setState({isLoading: true})
     event.preventDefault();
 
-    fetch(`https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20public_cases_fc%20WHERE%20zipcode%20=%20%27${zip}%27%20AND%20media_url%20NOT%20LIKE%20%27%27%20LIMIT%203`).then(response => {
+    fetch(`https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20public_cases_fc%20WHERE%20media_url%20NOT%20LIKE%20%27%27${zip}${results}`)
+    .then(response => {
       if (response.ok) {
         return response.json()
       }
-    }).then(data => {
+    })
+    .then(data => {
       console.log(data.rows)
       this.setState({data: data.rows})
       this.setState({isLoading: false})
@@ -48,14 +62,47 @@ class LocationGetter extends Component {
   };
 
   render() {
-    if (this.state.isLoading)
+
+    //conditionally render the button
+    let button = null;
+    if (this.state.buttonDisabled) {
+      button = <input className={this.state.buttonClass} type="submit" value="Submit" disabled/>;
+    } else {
+      button = <input className={this.state.buttonClass} type="submit" value="Submit"/>;
+    }
+
+    // render a loading message
+    if (this.state.isLoading) {
       return <div className="loading">loading...</div>
+    }
+
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
-          <span>Philly Zip code pls:</span>
-          <input type="text" value={this.state.query} onChange={this.handleChange}/>
-          <input className={this.state.buttonState} type="submit" value="Submit"/>
+          <fieldset>
+            <legend>311 Search</legend>
+              <label>Philly Zip code pls:
+              <input
+                name="query"
+                type="text"
+                value={this.state.query}
+                onChange={this.handleInputChange}/>
+              </label>
+              <label>
+              Limit results to:
+              <select
+                name="results"
+                type="number"
+                value={this.state.results}
+                onChange={this.handleInputChange}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+              </select>
+            </label>
+              {button}
+            </fieldset>
         </form>
       <div>
         <ul>
