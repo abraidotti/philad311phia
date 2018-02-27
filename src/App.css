@@ -2,23 +2,31 @@ body {
   font-family: 'Roboto', sans-serif
 }
 
+fieldset {
+  border: 1px solid #2176d2;
+  border-radius: 1em;
+  padding: 1em;
+}
+
 input[type=text] {
     width: 20%;
     margin: 1em;
 }
 
-input.inactive {
-  
+input[type=submit] {
+    background-color: #2176d2;
 }
 
 .navbar {
   display: block;
-  border-radius: 4px;
-  background-color: #f3c613;
+  background-color: #2176d2;
+  opacity: 0.9;
+  color: #f3c613;
+  margin: 1em;
 }
 
 .navbar p {
-  color: #0f4d90;
+  color: #f3c613;
   font-size: 3em;
   font-weight: 800;
 }
@@ -28,13 +36,21 @@ input.inactive {
   margin: 0 auto;
   width: 30vw;
   font-size: 2em;
+  font-weight: 600;
+}
+
+.navbar a {
+  color: #f3c613;
+}
+
+a:hover {
+  color: #96c9ff;
 }
 
 .app-entry {
   background-color: #96c9ff;
   border: 2px solid #2176d2;
-  border-radius: 4px;
-  margin: 1%;
+  border-radius: 1em;
   font-size: 1.2em;
   font-weight: 800;
 }
