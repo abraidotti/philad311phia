@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <div className="navbar">
       <ul>
-        <p>Really Philly, yo!</p>
+        <p><Link to='/'>Really Philly!</Link></p>
         <li>
           <Link to='/'>Home</Link>
         </li>

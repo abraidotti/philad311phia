@@ -15,25 +15,32 @@ input[type=text] {
 
 input[type=submit] {
     background-color: #2176d2;
+    border: 1px solid #f3c613;
+}
+
+select {
+  width: 4em;
 }
 
 .navbar {
-  display: block;
-  background-color: #2176d2;
-  opacity: 0.9;
+  display: inline-block;
+  height: 10em;
+  width: 100%;
+  background-color: #0f4d90;
   color: #f3c613;
-  margin: 1em;
 }
 
 .navbar p {
   color: #f3c613;
+  text-align: center;
   font-size: 3em;
   font-weight: 800;
+  margin: 0 auto;
 }
 
 .navbar li {
   display: inline-block;
-  margin: 0 auto;
+  text-align: center;
   width: 30vw;
   font-size: 2em;
   font-weight: 600;
@@ -53,8 +60,23 @@ a:hover {
   border-radius: 1em;
   font-size: 1.2em;
   font-weight: 800;
+  margin: 1em auto;
 }
 
 .loading {
   font-size: 4em;
+}
+
+.footer {
+  width: 100%;
+  height: 2.5em;
+  position: sticky;
+  bottom: 0;
+  background-color: #0f4d90;
+  color: #f3c613;
+}
+
+.footer a {
+  float: right;
+  margin: 0.2em 1em;
 }

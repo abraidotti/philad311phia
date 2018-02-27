@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import styles from '../App.css';
+import '../App.css';
 
 import About from './About';
 import Contact from './Contact';
 import Home from './Home';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
             </Switch>
           </Fragment>
         </Router>
+      <Footer />
       </div>
     )
   }
