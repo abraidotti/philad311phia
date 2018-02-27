@@ -15,7 +15,7 @@ class LocationGetter extends Component {
       isLoading: false,
       query: '',
       results: '5',
-      buttonClass: '',
+      checked: '',
       buttonDisabled: true,
       data: []
     };
@@ -33,10 +33,10 @@ class LocationGetter extends Component {
 
     if (name === 'query') {
       if (allowedZips.indexOf(target.value) > -1) {
-        this.setState({ buttonClass: 'active' });
+        this.setState({ checked: '✔️' });
         this.setState({ buttonDisabled: false });
       } else {
-        this.setState({ buttonClass: 'inactive' });
+        this.setState({ checked: '' });
         this.setState({ buttonDisabled: true });
       }
     }
@@ -66,9 +66,9 @@ class LocationGetter extends Component {
     //conditionally render the button
     let button = null;
     if (this.state.buttonDisabled) {
-      button = <input className={this.state.buttonClass} type="submit" value="Submit" disabled/>;
+      button = <input type="submit" value="Submit" disabled/>;
     } else {
-      button = <input className={this.state.buttonClass} type="submit" value="Submit"/>;
+      button = <input type="submit" value="Submit"/>;
     }
 
     // render a loading message
@@ -81,12 +81,13 @@ class LocationGetter extends Component {
         <form onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>311 Search</legend>
-              <label>Philly Zip code pls:
+              <label>Philly zip code pls:
               <input
                 name="query"
                 type="text"
                 value={this.state.query}
                 onChange={this.handleInputChange}/>
+                {this.state.checked}
               </label>
               <label>
               Limit results to:

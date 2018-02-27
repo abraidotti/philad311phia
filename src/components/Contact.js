@@ -5,7 +5,7 @@ class Contact extends Component {
     return (
       <div className="container">
         <p><a href="http://www.twitter.com/SandroBraidotti">@SandroBraidotti</a></p>
-        <p>See ya at the Pope!</p>
+        <p>Find me hanging with the raccoons in South Philly.</p>
       </div>
     );
   }
