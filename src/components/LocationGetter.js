@@ -81,7 +81,7 @@ class LocationGetter extends Component {
         <form onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>311 Search</legend>
-              <label>Philly zip code pls:
+              <label>Philly zip code please:
               <input
                 name="query"
                 type="text"
