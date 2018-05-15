@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Requests from './views/Requests';
 
 const allowedZips = [ '19019', '19099', '19101', '19102', '19103', '19104',
 '19105', '19106', '19107', '19109', '19110', '19111', '19112', '19114', '19115',
@@ -12,7 +13,6 @@ class LocationForm extends Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
       query: '',
       results: '5',
       checked: '',
@@ -57,7 +57,6 @@ class LocationForm extends Component {
     .then(data => {
       console.log(data.rows)
       this.setState({data: data.rows})
-      this.setState({isLoading: false})
     });
   };
 
@@ -72,8 +71,11 @@ class LocationForm extends Component {
     }
 
     // render a loading message
-    if (this.state.isLoading) {
-      return <div className="loading">loading...</div>
+    let requests = null;
+    if (this.state.data) {
+      requests = <Requests data={this.state.data} />
+    } else {
+      requests = <p>Waiting for data</p>
     }
 
     return (
@@ -105,31 +107,9 @@ class LocationForm extends Component {
               {button}
             </fieldset>
         </form>
-      <div>
-        <ul>
-          {
-            this.state.data.map((item, index) => <div key={index} className="container app-entry">
-              <div className="row">
-                <div className="column">
-                  <img src={item.media_url} alt="media url"/>
-                </div>
-                <div className="column entry-info">
-                  <p>Service Request ID: {item.service_request_id}</p>
-                  <p>Address: {item.address}, {item.zipcode}</p>
-                  <p>Service name: {item.service_name}
-                    (code: {item.service_code})</p>
-                  <p>Agency Responsible: {item.agency_responsible}</p>
-                  <p>Date Requested: {item.requested_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
-                  <p>Date Expected: {item.expected_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
-                  <p>Last Updated: {item.updated_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
-                  <p>Status: {item.status}</p>
-                  <p>Status Notes: {item.status_notes}</p>
-                </div>
-              </div>
-            </div>)
-          }
-        </ul>
-      </div>
+
+      {requests}
+
     </div>)
   };
 };
