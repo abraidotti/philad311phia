@@ -44,8 +44,7 @@ class LocationForm extends Component {
 
   handleSubmit(event) {
     const zip = '%20AND%20zipcode%20=%20%27' + this.state.query + '%27';
-    const results = '%20LIMIT%20' + this.state.results
-    this.setState({isLoading: true})
+    const results = '%20LIMIT%20' + this.state.results;
     event.preventDefault();
 
     fetch(`https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20public_cases_fc%20WHERE%20media_url%20NOT%20LIKE%20%27%27${zip}${results}`)
@@ -61,7 +60,6 @@ class LocationForm extends Component {
   };
 
   render() {
-
     //conditionally render the submit button
     let button = null;
     if (this.state.buttonDisabled) {
@@ -75,7 +73,7 @@ class LocationForm extends Component {
     if (this.state.data) {
       requests = <Requests data={this.state.data} />
     } else {
-      requests = <p>Waiting for data</p>
+      requests = <p>Waiting for data...</p>
     }
 
     return (
@@ -107,9 +105,7 @@ class LocationForm extends Component {
               {button}
             </fieldset>
         </form>
-
       {requests}
-
     </div>)
   };
 };
