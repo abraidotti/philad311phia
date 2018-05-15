@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
-import LocationGetter from './LocationGetter';
+import LocationForm from '../LocationForm';
 
 class Home extends Component {
   render (){
     return (
       <div>
-        <LocationGetter />
+        <LocationForm />
       </div>
     );
   }
