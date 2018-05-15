@@ -63,6 +63,26 @@ a:hover {
   margin: 1em auto;
 }
 
+.paginated {
+  display: flex;
+  list-style-type: none;
+}
+
+.paginated li {
+  margin: 0 auto;
+  width: 2em;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  background-color: #96c9ff;
+  border-radius: 2px;
+  border: 1px solid black;
+}
+
+li:hover {
+  background-color: #f3c613;
+}
+
 img {
   margin: 1em auto;
 }
