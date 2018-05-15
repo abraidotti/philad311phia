@@ -63,6 +63,10 @@ a:hover {
   margin: 1em auto;
 }
 
+img {
+  margin: 1em;
+}
+
 .loading {
   font-size: 4em;
 }
