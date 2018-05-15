@@ -8,7 +8,7 @@ const allowedZips = [ '19019', '19099', '19101', '19102', '19103', '19104',
 '19144', '19145', '19146', '19146', '19147', '19148', '19149', '19150', '19151',
 '19152', '19153', '19154', '19155', '19170', '19173', '19176', '19187', '19192' ]
 
-class LocationGetter extends Component {
+class LocationForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -63,7 +63,7 @@ class LocationGetter extends Component {
 
   render() {
 
-    //conditionally render the button
+    //conditionally render the submit button
     let button = null;
     if (this.state.buttonDisabled) {
       button = <input type="submit" value="Submit" disabled/>;
@@ -119,9 +119,9 @@ class LocationGetter extends Component {
                   <p>Service name: {item.service_name}
                     (code: {item.service_code})</p>
                   <p>Agency Responsible: {item.agency_responsible}</p>
-                  <p>Date Requested: {item.requested_datetime.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}</p>
-                  <p>Date Expected: {item.expected_datetime.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}</p>
-                  <p>Last Updated: {item.updated_datetime.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}</p>
+                  <p>Date Requested: {item.requested_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
+                  <p>Date Expected: {item.expected_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
+                  <p>Last Updated: {item.updated_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
                   <p>Status: {item.status}</p>
                   <p>Status Notes: {item.status_notes}</p>
                 </div>
@@ -134,8 +134,8 @@ class LocationGetter extends Component {
   };
 };
 
-LocationGetter.defaultProps = {
+LocationForm.defaultProps = {
   zip: '19146'
 };
 
-export default LocationGetter;
+export default LocationForm;

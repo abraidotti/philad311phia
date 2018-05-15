@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../App.css';
 
-import About from './About';
-import Contact from './Contact';
-import Home from './Home';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import About from './nav/About';
+import Contact from './nav/Contact';
+import Home from './nav/Home';
+import NavBar from './nav/NavBar';
+import Footer from './nav/Footer';
 
 class App extends Component {
   render() {
