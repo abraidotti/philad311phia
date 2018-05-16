@@ -36,9 +36,15 @@ class Requests extends Component {
               <p>Address: {item.address}, {item.zipcode}</p>
               <p>Service name: {item.service_name} (code: {item.service_code})</p>
               <p>Agency Responsible: {item.agency_responsible}</p>
-              <p>Date Requested: {item.requested_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
-              <p>Date Expected: {item.expected_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
-              <p>Last Updated: {item.updated_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</p>
+              <p>Date Requested:
+                {item.requested_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}
+              </p>
+              <p>Date Expected:
+                {item.expected_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}
+              </p>
+              <p>Last Updated:
+                {item.updated_datetime.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}
+              </p>
               <p>Status: {item.status}</p>
               <p>Status Notes: {item.status_notes}</p>
             </div>
@@ -53,25 +59,26 @@ class Requests extends Component {
     }
 
     const renderPageNumbers = pageNumbers.map(number => {
-      return (
-          <li
-            key={number}
-            id={number}
-            onClick={this.handleClick}
-          >
+        return (
+          <li key={number} id={number} onClick={this.handleClick}>
             {number}
           </li>
-      );
+        )
     });
+
+    const page = pageNumbers.length > 1 ? <span>page: </span> : '';
+    const pagination = pageNumbers.length > 1 ? (renderPageNumbers) : ('');
 
     return (
       <div>
         <ul className="paginated">
-          {renderPageNumbers}
+          {page}
+          {pagination}
         </ul>
         {renderRequests}
         <ul className="paginated">
-          {renderPageNumbers}
+          {page}
+          {pagination}
         </ul>
       </div>
     );

@@ -10,8 +10,17 @@ npm start
 http://localhost:3000
 ```
 
-## Todo
+## updates - mid-May 2018
 
-- switch CSS to Sass
-- add more functionality to queries
-- paginate results
+- pagination now in! feelsgoodman.jpg 👨‍🎤
+
+## todo
+
+- switch CSS to Sass - gotta get that dang node module working
+- add more functionality to queries / figure out a reason to add redux
+
+## suggestions from a friend to ponder:
+
+1. Make the footer stick to the bottom of the page, or get rid of it. You only have one link there that could easily be in the header.
+2. Should be able to filter the results by status at least. Filtering/sorting by most recent would be cool too.
+3. Any reason why we can't see all of the results? Seems silly be forced to limit the results

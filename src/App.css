@@ -69,7 +69,7 @@ a:hover {
 }
 
 .paginated li {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   width: 2em;
   text-decoration: none;
   text-align: center;
@@ -80,7 +80,7 @@ a:hover {
 }
 
 li:hover {
-  background-color: #f3c613;
+  background-color: #0f4d90;
 }
 
 img {
