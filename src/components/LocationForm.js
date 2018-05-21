@@ -16,6 +16,7 @@ class LocationForm extends Component {
       query: '',
       results: '5',
       checked: '',
+      images: '',
       buttonDisabled: true,
       data: []
     };
@@ -30,6 +31,7 @@ class LocationForm extends Component {
     const value = target.value;
 
     this.setState({ [name]: value });
+    console.log({ [name]: value });
 
     if (name === 'query') {
       if (allowedZips.indexOf(target.value) > -1) {
@@ -43,11 +45,12 @@ class LocationForm extends Component {
   }
 
   handleSubmit(event) {
+    const mediaUrl = '%20WHERE%20media_url%20NOT%20LIKE%20%27%27';
     const zip = '%20AND%20zipcode%20=%20%27' + this.state.query + '%27';
     const results = '%20LIMIT%20' + this.state.results;
     event.preventDefault();
 
-    fetch(`https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20public_cases_fc%20WHERE%20media_url%20NOT%20LIKE%20%27%27${zip}${results}`)
+    fetch(`https://phl.carto.com/api/v2/sql?q=SELECT%20*%20FROM%20public_cases_fc${mediaUrl}${zip}${results}`)
     .then(response => {
       if (response.ok) {
         return response.json()
@@ -88,6 +91,15 @@ class LocationForm extends Component {
                 value={this.state.query}
                 onChange={this.handleInputChange}/>
                 {this.state.checked}
+              </label>
+              <label>
+              only results with images:
+              <input
+                name="isGoing"
+                type="checkbox"
+                checked="true"
+                value={this.state.images}
+                onChange={this.handleInputChange} />
               </label>
               <label>
               Limit results to:
